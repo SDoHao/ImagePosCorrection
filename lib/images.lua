@@ -92,8 +92,8 @@ function Image.loadImages(idx)
         _frame.height = _frame.img:getHeight()
         ImgsPack.frames[i] =_frame
     end
-    Image.loadBoxData("atk",set.path.."AtkBoxs.txt")
-    Image.loadBoxData("hit",set.path.."HitBoxs.txt")
+    Image.loadBoxData("atk",set.path.."AtkBox.txt")
+    Image.loadBoxData("hit",set.path.."HitBox.txt")
     Image.loadPosData(set.path.."pos.txt")
 end
 
@@ -101,10 +101,10 @@ function Image.loadPosData(filename)
     local _read_file = io.open(filename, "r")
     if _read_file then
         for i = 1,ImgsPack.max_frame do
-            ImgsPack.frames[i].of_x = 96 - _read_file:read("*n")
-            ImgsPack.frames[i].of_y = 151 - _read_file:read("*n")
+            ImgsPack.frames[i].of_x = _read_file:read("*n")
+            ImgsPack.frames[i].of_y = _read_file:read("*n")
         end
-        io.close()
+        io.close(_read_file)
     else
         print("文件读取失败:", filename)
         return nil
@@ -128,7 +128,7 @@ function Image.loadBoxData(box,filename)
             end
 
         end
-        io.close()
+        io.close(_read_file)
     else
         print("文件读取失败:", filename)
         return nil
@@ -137,8 +137,19 @@ function Image.loadBoxData(box,filename)
 end
 
 function Image.SaveData()
-    Image.SaveBoxData("atk",ImgsPack.set.path.."AtkBoxs.txt")
-    Image.SaveBoxData("hit",ImgsPack.set.path.."HitBoxs.txt")
+    Image.SaveBoxData("atk",ImgsPack.set.path.."AtkBox.txt")
+    Image.SaveBoxData("hit",ImgsPack.set.path.."HitBox.txt")
+
+    local _write_file = io.open(ImgsPack.set.path.."pos.txt", "w")
+    if _write_file then
+        for i = 1,ImgsPack.max_frame do
+            _write_file:write(table.concat({ImgsPack.frames[i].of_x," ",ImgsPack.frames[i].of_y,"\n"}))
+        end
+        io.close(_write_file)
+    else
+        print("文件读取失败:", "pos.txt")
+        return nil
+    end
 
 end
 
