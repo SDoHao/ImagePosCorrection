@@ -4,7 +4,7 @@ local ENUM_MOUSE_STATE = {
                                   --...
     DRAW_HIT_RECT = 3,            --绘制受击框
     PRESSED = 4,
-    END = 4,
+    END = 5 ,
 }
 
 local ENUM_MOUSE_BUTTON = {

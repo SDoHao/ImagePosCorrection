@@ -59,7 +59,6 @@ function Image.init()
         GRIDS_X[idx2] = x
         GRIDS_Y[idx1] = 0
         GRIDS_Y[idx2] = HEIGHT
- 
     end
 
     -- 写入横线
@@ -326,21 +325,29 @@ end
 function Image.moveUp(distance)
     local frame = ImgsPack.frames[ImgsPack.index]
     frame.of_y = frame.of_y + distance
+    frame.atk[2] = frame.atk[2] - distance
+    frame.hit[2] = frame.hit[2] - distance
 end
 
 function Image.moveDown(distance)
     local frame = ImgsPack.frames[ImgsPack.index]
     frame.of_y = frame.of_y - distance
+    frame.atk[2] = frame.atk[2] + distance
+    frame.hit[2] = frame.hit[2] + distance
 end
 
 function Image.moveLeft(distance)
     local frame = ImgsPack.frames[ImgsPack.index]
     frame.of_x = frame.of_x + distance
+    frame.atk[1] = frame.atk[1] - distance
+    frame.hit[1] = frame.hit[1] - distance
 end
 
 function Image.moveRight(distance)
     local frame = ImgsPack.frames[ImgsPack.index]
     frame.of_x = frame.of_x - distance
+    frame.atk[1] = frame.atk[1] + distance
+    frame.hit[1] = frame.hit[1] + distance
 end
 
 function Image.setBox()
