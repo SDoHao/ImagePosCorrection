@@ -1,5 +1,5 @@
 function love.conf(t)
-  t.title = "Map Editor 0.1" 
+  t.title = "Pos Editor 0.1" 
   t.window.width = 640
   t.window.height = 480
   t.window.borderless = false
