@@ -48,7 +48,7 @@ Mouse = {
 
 function Mouse.callBack(_ms_event,func)
     if(not mouse_events[_ms_event])then
-        mouse_events[_ms_event] = {nil}
+        mouse_events[_ms_event] = {}
     end
     table.insert(mouse_events[_ms_event],func)
 end

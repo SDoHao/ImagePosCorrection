@@ -22,7 +22,7 @@ local ImgsPack = {
     index = 1,
     max_frame = 0,
     paused = true,
-    rate = 0.5,
+    rate = 0.2,
     timer = 0,
     set = nil,
 }
@@ -159,7 +159,7 @@ function Image.SaveBoxData(box,filename)
    local x
    local y
    local w
-   local h  
+   local h
    for index = 1,ImgsPack.max_frame do
         local t_data = ImgsPack.frames[index][box]
         x = t_data[1] - ORIGIN_X
@@ -279,6 +279,12 @@ function Image.setDrag(ms_state,st_x,st_y)
     draged = true
     img_off_x = st_x
     img_off_y = st_y
+end
+
+function Image.cancelDrag(ms_state,st_x,st_y)
+    if(draged)then
+        draged = false
+    end
 end
 
 function Image.drag(ms_state,st_x,st_y)
